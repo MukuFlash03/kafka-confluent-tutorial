@@ -24,16 +24,9 @@ RUN wget https://services.gradle.org/distributions/gradle-8.10.1-bin.zip \
 
 ENV PATH=$PATH:/opt/gradle/gradle-8.10.1/bin
 
-WORKDIR /app
-
-RUN mkdir kafka-java-getting-started \
-    && cd kafka-java-getting-started \
-    && mkdir -p src/main/java/io/confluent/developer
-
 WORKDIR /app/kafka-java-getting-started
 
 ADD build.gradle .env ./
 COPY src src
-
 
 CMD ["/bin/bash"]

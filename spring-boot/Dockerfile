@@ -24,18 +24,9 @@ RUN wget https://services.gradle.org/distributions/gradle-8.10.1-bin.zip \
 
 ENV PATH=$PATH:/opt/gradle/gradle-8.10.1/bin
 
-WORKDIR /app
-
-RUN mkdir kafka-spring-boot-getting-started \
-    && cd kafka-spring-boot-getting-started \
-    && mkdir -p src/main/java/examples \
-    && mkdir -p src/main/resources
-
-WORKDIR /app/kafka-java-getting-started
+WORKDIR /app/kafka-spring-boot-getting-started
 
 ADD build.gradle .env ./
-# ADD build.gradle ./
 COPY src src
-
 
 CMD ["/bin/bash"]

@@ -13,11 +13,6 @@ RUN apk --no-cache add \
 
 RUN apk add --no-cache --virtual .build-deps gcc zlib-dev libc-dev bsd-compat-headers py-setuptools bash
 
-WORKDIR /app
-
-RUN mkdir kafka-nodejs-getting-started \
-    && cd kafka-nodejs-getting-started
-
 WORKDIR /app/kafka-nodejs-getting-started
 
 RUN npm install node-rdkafka dotenv
