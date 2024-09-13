@@ -26,13 +26,15 @@ ENV PATH=$PATH:/opt/gradle/gradle-8.10.1/bin
 
 WORKDIR /app
 
-RUN mkdir kafka-java-getting-started \
-    && cd kafka-java-getting-started \
-    && mkdir -p src/main/java/io/confluent/developer
+RUN mkdir kafka-spring-boot-getting-started \
+    && cd kafka-spring-boot-getting-started \
+    && mkdir -p src/main/java/examples \
+    && mkdir -p src/main/resources
 
 WORKDIR /app/kafka-java-getting-started
 
 ADD build.gradle .env ./
+# ADD build.gradle ./
 COPY src src
 
 

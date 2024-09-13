@@ -1,0 +1,38 @@
+version: '3.8'
+
+services:
+  java-app:
+    build:
+      context: ./java
+      dockerfile: Dockerfile
+    container_name: kafka-java-app
+    environment:
+      - BOOTSTRAP_SERVERS=${BOOTSTRAP_SERVERS}
+      - CLUSTER_API_KEY=${CLUSTER_API_KEY}
+      - CLUSTER_API_SECRET=${CLUSTER_API_SECRET}
+    # volumes:
+    #   - ./java:/app
+    command: ["/bin/bash", "-c"]
+    networks:
+      - kafka-tutorial-network
+
+  spring-boot-app:
+    build:
+      context: ./spring-boot
+      dockerfile: Dockerfile
+    container_name: kafka-spring-boot-app
+    environment:
+      - BOOTSTRAP_SERVERS=${BOOTSTRAP_SERVERS}
+      - CLUSTER_API_KEY=${CLUSTER_API_KEY}
+      - CLUSTER_API_SECRET=${CLUSTER_API_SECRET}
+    ports:
+      - "8080:8080"
+    # volumes:
+    #   - ./spring-boot:/app
+    command: ["/bin/bash", "-c"]
+    networks:
+      - kafka-tutorial-network
+
+networks:
+  default:
+    name: kafka-tutorial-network

@@ -18,7 +18,7 @@ import static org.apache.kafka.common.config.SaslConfigs.SASL_MECHANISM;
 
 public class ConsumerExample {
     public static void main(final String[] args) {
-        ReadEnvVars readEnv = new ReadEnvVars("src/main/java/io/confluent/developer/.env");
+        ReadEnvVars readEnv = new ReadEnvVars(".env");
         String confluentClusterApiKey = readEnv.get("CONFLUENT_CLUSTER_API_KEY");
         String confluentClusterApiSecret = readEnv.get("CONFLUENT_CLUSTER_API_SECRET");
         String bootstrapServerUrl = readEnv.get("BOOTSTRAP_SERVER_URL");
