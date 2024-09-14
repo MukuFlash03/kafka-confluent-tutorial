@@ -7,12 +7,11 @@ services:
       dockerfile: Dockerfile
     container_name: kafka-java-app
     environment:
-      - BOOTSTRAP_SERVERS=${BOOTSTRAP_SERVERS}
-      - CLUSTER_API_KEY=${CLUSTER_API_KEY}
-      - CLUSTER_API_SECRET=${CLUSTER_API_SECRET}
-    # volumes:
-    #   - ./java:/app
-    command: ["/bin/bash", "-c"]
+      - BOOTSTRAP_SERVER_URL=${BOOTSTRAP_SERVER_URL}
+      - CONFLUENT_CLUSTER_API_KEY=${CONFLUENT_CLUSTER_API_KEY}
+      - CONFLUENT_CLUSTER_API_SECRET=${CONFLUENT_CLUSTER_API_SECRET}
+    # command: ["/bin/bash", "-c"]
+    command: tail -f /dev/null
     networks:
       - kafka-tutorial-network
 
@@ -22,17 +21,57 @@ services:
       dockerfile: Dockerfile
     container_name: kafka-spring-boot-app
     environment:
-      - BOOTSTRAP_SERVERS=${BOOTSTRAP_SERVERS}
-      - CLUSTER_API_KEY=${CLUSTER_API_KEY}
-      - CLUSTER_API_SECRET=${CLUSTER_API_SECRET}
+      - BOOTSTRAP_SERVER_URL=${BOOTSTRAP_SERVER_URL}
+      - CONFLUENT_CLUSTER_API_KEY=${CONFLUENT_CLUSTER_API_KEY}
+      - CONFLUENT_CLUSTER_API_SECRET=${CONFLUENT_CLUSTER_API_SECRET}
     ports:
       - "8080:8080"
-    # volumes:
-    #   - ./spring-boot:/app
-    command: ["/bin/bash", "-c"]
+    # command: ["/bin/bash", "-c"]
+    command: tail -f /dev/null
+    networks:
+      - kafka-tutorial-network
+
+  python-app:
+    build:
+      context: ./python
+      dockerfile: Dockerfile
+    container_name: kafka-python-app
+    environment:
+      - BOOTSTRAP_SERVER_URL=${BOOTSTRAP_SERVER_URL}
+      - CONFLUENT_CLUSTER_API_KEY=${CONFLUENT_CLUSTER_API_KEY}
+      - CONFLUENT_CLUSTER_API_SECRET=${CONFLUENT_CLUSTER_API_SECRET}
+    # command: ["/bin/bash", "-c"]
+    command: tail -f /dev/null
+    networks:
+      - kafka-tutorial-network
+
+  golang-app:
+    build:
+      context: ./golang
+      dockerfile: Dockerfile
+    container_name: kafka-golang-app
+    environment:
+      - BOOTSTRAP_SERVER_URL=${BOOTSTRAP_SERVER_URL}
+      - CONFLUENT_CLUSTER_API_KEY=${CONFLUENT_CLUSTER_API_KEY}
+      - CONFLUENT_CLUSTER_API_SECRET=${CONFLUENT_CLUSTER_API_SECRET}
+    # command: ["/bin/bash", "-c"]
+    command: tail -f /dev/null
+    networks:
+      - kafka-tutorial-network
+
+  nodejs-app:
+    build:
+      context: ./nodeJS
+      dockerfile: Dockerfile
+    container_name: kafka-nodejs-app
+    environment:
+      - BOOTSTRAP_SERVER_URL=${BOOTSTRAP_SERVER_URL}
+      - CONFLUENT_CLUSTER_API_KEY=${CONFLUENT_CLUSTER_API_KEY}
+      - CONFLUENT_CLUSTER_API_SECRET=${CONFLUENT_CLUSTER_API_SECRET}
+    # command: ["/bin/bash", "-c"]
+    command: tail -f /dev/null
     networks:
       - kafka-tutorial-network
 
 networks:
-  default:
-    name: kafka-tutorial-network
+  kafka-tutorial-network:
