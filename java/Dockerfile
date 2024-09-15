@@ -26,7 +26,6 @@ ENV PATH=$PATH:/opt/gradle/gradle-8.10.1/bin
 
 WORKDIR /app/kafka-java-getting-started
 
-ADD build.gradle .env ./
-COPY src src
+COPY . .
 
 CMD ["/bin/bash"]

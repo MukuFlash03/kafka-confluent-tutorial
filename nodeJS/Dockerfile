@@ -17,5 +17,5 @@ WORKDIR /app/kafka-nodejs-getting-started
 
 RUN npm install node-rdkafka dotenv
 
-COPY .env ./
-COPY src src
+COPY . .
+
